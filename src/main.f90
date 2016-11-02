@@ -79,7 +79,7 @@ program sasa
     use, intrinsic :: iso_fortran_env
 
     implicit none
-    real(8) :: r, r2, area_sasa_avg, area_sasa_err, rvdw_tmp
+    real(8) :: r, area_sasa_avg, area_sasa_err, rvdw_tmp
     real(8), allocatable :: area_sasa(:), area_sasa_avg_block(:), rvdw(:)
     integer :: nsites, nrand, u, nblocks, block_size, n, nthread
     type(Trajectory) :: trj
@@ -119,7 +119,6 @@ program sasa
 
     call config%get("config.r", r, found)
     if (.not. found) r = 0.14d0
-    r2 = r**2
 
     call config%get("config.nblocks", nblocks, found)
     if (.not. found) nblocks = 5
