@@ -1,10 +1,13 @@
 .PHONY: sasa install clean
-PREFIX ?= /usr
+PROGRAM = sasa
+PREFIX ?= /usr/local
 BINDIR = ${DESTDIR}${PREFIX}/bin
+CFLAGS += -I/usr/include -Jinclude `pkg-config --cflags libgmxfort` -fopenmp -Wall
+LDFLAGS += -ljsonfortran `pkg-config --libs libgmxfort`
 
-sasa: 
+${PROGRAM}: 
 	@mkdir -p bin include
-	@gfortran src/main.f90 -lgmxfort -I/usr/include -J./include -ljsonfortran -fopenmp -Wall -o bin/sasa
+	@gfortran src/main.f90 -o bin/$@ ${CFLAGS} ${LDFLAGS}
 
 install: sasa
 	@install -Dm755 bin/* -t ${BINDIR}

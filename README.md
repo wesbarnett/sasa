@@ -19,7 +19,7 @@ Requires [libgmxfort](https://github.com/wesbarnett/libgmxfort) and
 
 ## Installation
 
-    # make install
+    # make PREFIX=/usr/local install
 
 ## Usage
 
